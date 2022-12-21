@@ -15,8 +15,7 @@ class MessageType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('content')
-            ->add('status')
-            ->add('created_at')
+
         ;
     }
 
