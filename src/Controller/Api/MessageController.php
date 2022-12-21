@@ -9,6 +9,7 @@ use App\Entity\Mail;
 use App\Entity\Messages;
 use App\Form\MailType;
 use App\Repository\MailRepository;
+use App\Repository\MessagesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,13 +19,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class MessageController extends AbstractController
 {
     #[Route('/api/sendmail', name: 'app_front_message')]
-    public function index(Request $request, SerializerInterface $serializer, ManagerRegistry $doctrine, ValidatorInterface $validator, MailRepository $mailRepository) : JsonResponse
+    public function index(Request $request, SerializerInterface $serializer, ManagerRegistry $doctrine, ValidatorInterface $validator, MessagesRepository $messageRepository) : JsonResponse
     {
         
         $json = $request->getContent();
         
-        $mail = $serializer->deserialize($json, Messages::class, 'json');
-        $errors = $validator->validate($mail);
+        $message = $serializer->deserialize($json, Messages::class, 'json');
+        dump($message);
+        $errors = $validator->validate($message);
         if(count($errors) > 0) {
             $cleanErrors = [];
 
@@ -37,18 +39,16 @@ class MessageController extends AbstractController
 
             }
 
-            return $this->json(['errors'=>$cleanErrors], Response::HTTP_UNPROCESSABLE_ENTITY); 
+            return $this->json(['errors'=>$cleanErrors, 'status' => Response::HTTP_UNPROCESSABLE_ENTITY]); 
         }
 
         $manager = $doctrine->getManager();
-        
-        $manager->persist($mail);
+        $message->setCreatedAt(new \DateTimeImmutable());
+        $message->setStatus(1);
+        $manager->persist($message);
         $manager->flush();
-        $mail->setCreatedAt(new \DateTimeImmutable());
-        $mail->setStatus(1);
-        $mailRepository->add($mail, true);
 
-        return $this->json(['success' => 'Mail send'], Response::HTTP_CREATED );
+        return $this->json(['success' => 'Votre message a été envoyé', 'status'=> Response::HTTP_CREATED ]);
         
     }
 
