@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class MessageController extends AbstractController
 {
-    #[Route('/front/message', name: 'app_front_message')]
+    #[Route('/api/sendmail', name: 'app_front_message')]
     public function index(Request $request, SerializerInterface $serializer, ManagerRegistry $doctrine, ValidatorInterface $validator, MailRepository $mailRepository) : JsonResponse
     {
         
@@ -37,7 +37,7 @@ class MessageController extends AbstractController
 
             }
 
-            return $this->json($cleanErrors, Response::HTTP_UNPROCESSABLE_ENTITY); 
+            return $this->json(['errors'=>$cleanErrors], Response::HTTP_UNPROCESSABLE_ENTITY); 
         }
 
         $manager = $doctrine->getManager();

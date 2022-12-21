@@ -1,19 +1,304 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+   
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CrossFit Daemon Poitiers</title>
+    <meta name="description" content="Crossfit Daemon Poitiers, située à Chasseneuil-du-Poitou, à 2 minutes du site du Futuroscope, CrossFit Daemon vous accueille dans un grand espace avec ses 800m2 dédiés au CrossFit et au renforcement musculaire à charges libres et son espace détente de 200m2.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="16x16" href="resized/favicon-16x16.png">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/animated-headline.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+ 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/fresco/dist/js/fresco.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/fresco/dist/css/fresco.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" media="(max-width:700px)" href="assets/css/styles.mobile.css">
+    <script type="text/javascript" src="./assets/js/tarteaucitron/tarteaucitron.js"></script>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
+        <script type="text/javascript">
+        tarteaucitron.init({
+    	  "privacyUrl": "", /* Privacy policy url */
+
+    	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+    	  "cookieName": "tarteaucitron", /* Cookie name */
+    
+    	  "orientation": "middle", /* Banner position (top - bottom) */
+       
+          "groupServices": false, /* Group services by category */
+                           
+    	  "showAlertSmall": false, /* Show the small banner on bottom right */
+    	  "cookieslist": false, /* Show the cookie list */
+                           
+          "closePopup": false, /* Show a close X on the banner */
+
+          "showIcon": true, /* Show cookie icon to manage cookies */
+          //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
+          "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
+
+    	  "adblocker": false, /* Show a Warning if an adblocker is detected */
+                           
+          "DenyAllCta" : false, /* Show the deny all button */
+          "AcceptAllCta" : false, /* Show the accept all button when highPrivacy on */
+          "highPrivacy": false, /* HIGHLY RECOMMANDED Disable auto consent */
+                           
+    	  "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+    	  "removeCredit": false, /* Remove credit link */
+    	  "moreInfoLink": true, /* Show more info link */
+
+          "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+          "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+
+    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                          
+          "readmoreLink": "", /* Change the default readmore link */
+
+          "mandatory": true, /* Show a message about mandatory cookies */
+        });
+        </script>
+</head>
+<body class="black-bg">
+    <!-- ? Preloader Start -->
+   <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/logo.png"  alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="sticky-bar">
+                <div class="container-fluid">
+                    <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="/"><img src="assets/img/logo/logo.png" width="120px" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                              <li><a href="#lecross">C’est quoi le CrossFit ?</a></li>
+                              <li><a href="#box">Notre BOX</a></li>
+                              <li><a href="#coach">le coach</a></li>
+                              <li><a href="#offres">Nos offres</a></li>
+                              <li><a href="#horaires">Nos horaires</a></li>
+                              <li><a href="#tarifs">Nos Tarifs</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                    <li><a href="https://sport.nubapp.com/web/setApplication.php?id_application=40954941" target="_blank">Mon espace</a>
+                                </ul>
+                            </nav>
+                        </div>          
+                        <!-- Header-btn -->
+                        <div class="header-btns d-none d-lg-block f-right">
+                         <!--  <a href="contact.html" class="btn">Contact me</a>-->
+                       </div>
+                       <!-- Mobile Menu -->
+                       <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
         {% block body %}{% endblock %}
-    </body>
+
+    <footer>
+    <!--? Footer Start-->
+    <div class="footer-area black-bg">
+        <div class="container">
+            <div class="footer-top footer-padding">
+                <!-- Footer Menu -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-footer-caption mb-50 text-center">
+                            <!-- logo -->
+                            <div class="footer-logo wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                                <a href="/"><img src="assets/img/logo/logo.png" width="320px" alt=""></a>
+                            </div>
+                            <!-- Menu -->
+                            <!-- Header Start -->
+                            <div class="header-area main-header2 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
+                                <div class="main-header main-header2">
+                                    <div class="menu-wrapper menu-wrapper2">
+                                        <!-- Main-menu -->
+                                        <div class="main-menu main-menu2 text-center">
+                                            <nav>
+                                                <ul>                                         
+                                                    <li><a id="bouton_texte" onclick="cgv()" href="#cgv" >CGV</a></li>
+
+                                                    <li><a id="bouton_texte" onclick="mentions()" href="#mentions">Mentions légales</a></li>
+
+                                                    <!--<li><a id="bouton_texte" onclick="partenaires()" href="#partenaires">Partenaires</a></li>-->
+                                                </ul>
+                                            </nav>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div id="cgv" class="cgv" style="display:none;">
+                                <p><?= $page->content ?></p>
+                            </div>
+                            <div id="mentions" class="cgv" style="display:none;">
+                                <p><?= $page2->content ?></p>
+                            </div>
+                            <div  class="mention"  data-wow-duration="1s" data-wow-delay=".1s">
+                            <p>En partenariat avec</p>
+                                <?php  foreach($partners as $partner): ?>
+                                            
+                                            <h2><?=$partner->name ?></h2>
+                                             <a href="<?=$partner->url?>" target="_blanck"><img src="<?=$partner->img ?>" width="300px"></a>
+                                    <?php   endforeach; ?>
+
+                               
+                            </div>
+                            <!-- Header End -->
+                            <!-- social -->
+                            <div class="footer-social mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
+                                <a href="https://www.instagram.com/crossfit_daemon/"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/crossfitdaemon"><i class="fab fa-facebook-f"></i></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="row d-flex align-items-center">
+                    <div class="col-lg-12">
+                        <div class="footer-copy-right text-center">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                              Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tout droit réversé | Réalisation du template par <a href="https://colorlib.com" target="_blank">Colorlib</a> adaptation par <a href="https://ms-tmi.fr" target="_blank">ms-tmi</a> | Réalisation de l'application <a href="https://ms-tmi.fr" target="_blank">ms-tmi</a> | Réalisation photo <a href="https://elo-studio86.fr" target="_blank">elo-studio</a>
+                              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Footer End-->
+  </footer>
+           <!-- Scroll Up -->
+           <div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
+
+
+<!-- JS here -->
+
+<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+<!-- Jquery, Popper, Bootstrap -->
+<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="./assets/js/popper.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<!-- Jquery Mobile Menu -->
+<script src="./assets/js/jquery.slicknav.min.js"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+<script src="./assets/js/owl.carousel.min.js"></script>
+<script src="./assets/js/slick.min.js"></script>
+<!-- One Page, Animated-HeadLin -->
+<script src="./assets/js/wow.min.js"></script>
+<script src="./assets/js/animated.headline.js"></script>
+<script src="./assets/js/jquery.magnific-popup.js"></script>
+
+<!-- Date Picker -->
+<script src="./assets/js/gijgo.min.js"></script>
+<!-- Nice-select, sticky -->
+<script src="./assets/js/jquery.nice-select.min.js"></script>
+<script src="./assets/js/jquery.sticky.js"></script>
+
+<!-- counter , waypoint,Hover Direction -->
+<script src="./assets/js/jquery.counterup.min.js"></script>
+<script src="./assets/js/waypoints.min.js"></script>
+<script src="./assets/js/jquery.countdown.min.js"></script>
+<script src="./assets/js/hover-direction-snake.min.js"></script>
+
+<!-- contact js -->
+<script src="./assets/js/contact.js"></script>
+<script src="./assets/js/jquery.form.js"></script>
+<script src="./assets/js/jquery.validate.min.js"></script>
+<script src="./assets/js/mail-script.js"></script>
+<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+<!-- Jquery Plugins, main Jquery -->	
+<script src="./assets/js/plugins.js"></script>
+<script src="./assets/js/main.js"></script>
+
+<!-- Galery gestion -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="./assets/lightbox/jquery.lightbox.min.js"></script>
+
+    <script>
+      $(function () {
+        $('.img-crossfit a').lightbox();
+      });
+    </script>
+	
+<script>
+function cgv() {
+  var div = document.getElementById("cgv");
+  if (div.style.display === "none") {
+    div.style.display = "block";
+  } else {
+    div.style.display = "none";
+  }
+}
+
+function mentions() {
+  var div = document.getElementById("mentions");
+  if (div.style.display === "none") {
+    div.style.display = "block";
+  } else {
+    div.style.display = "none";
+  }
+}
+
+function partenaires() {
+  var div = document.getElementById("partenaires");
+  if (div.style.display === "none") {
+    div.style.display = "block";
+  } else {
+    div.style.display = "none";
+  }
+}
+</script>
+</body>
 </html>
+
+
+       
+    
