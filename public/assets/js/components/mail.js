@@ -18,6 +18,7 @@ const mail = {
         console.log(name);
         const email = document.querySelector('#message_email').value;
         const message = document.querySelector('#message_content').value;
+        const token = document.querySelector('#message__token').value;
         console.log(message);
        // const checkbox = document.querySelector('.cv__form__element-checkbox').checked;
        // console.log(name);
@@ -25,13 +26,13 @@ const mail = {
        // console.log(text);
        // console.log(checkbox);
        //if (!name || !email || !message || checkbox === false)
-        if (!name || !email || !message ) 
+        if (!name || !email || !message || !token ) 
         {
             const contentMessage = 'Veuillez renseigner tous les champs'
             mail.erreurMessage(contentMessage);
         } 
  
-        mail.sendMail(name,email,message);
+        mail.sendMail(name,email,message,token);
         
     },
 
@@ -42,14 +43,16 @@ const mail = {
     
     clearSuccessMessage: function() {
         mail.message.classList.remove('success');
+        mail.message.textContent = "";
     },
 
-    sendMail: function(name,email,message)
+    sendMail: function(name,email,message,token)
     {
         const data = {
             "name" : name,
             "email" : email,
             "content" : message,
+            "token" :token
             //"checkbox" : checkbox
         }
 

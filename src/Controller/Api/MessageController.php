@@ -25,7 +25,6 @@ class MessageController extends AbstractController
         $json = $request->getContent();
         
         $message = $serializer->deserialize($json, Messages::class, 'json');
-        dump($message);
         $errors = $validator->validate($message);
         if(count($errors) > 0) {
             $cleanErrors = [];
