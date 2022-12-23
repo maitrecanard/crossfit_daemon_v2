@@ -6,7 +6,6 @@ const mail = {
 
     init: function() {
         const submit = document.querySelector('form');
-        console.log(submit);
         submit.addEventListener('submit', mail.controlMail);
     },
 
@@ -15,17 +14,11 @@ const mail = {
         event.preventDefault();
       
         const name = document.querySelector('#message_name').value;
-        console.log(name);
         const email = document.querySelector('#message_email').value;
         const message = document.querySelector('#message_content').value;
         const token = document.querySelector('#message__token').value;
         console.log(message);
-       // const checkbox = document.querySelector('.cv__form__element-checkbox').checked;
-       // console.log(name);
-        //console.log(email);
-       // console.log(text);
-       // console.log(checkbox);
-       //if (!name || !email || !message || checkbox === false)
+
         if (!name || !email || !message || !token ) 
         {
             const contentMessage = 'Veuillez renseigner tous les champs'
@@ -75,14 +68,10 @@ const mail = {
                 
                if (message.status === 201)
                {
-                console.log(message.status)
                     mail.successMessage(message.success);
-                    console.log('mail ok');
 
                     mail.cleanForm();
                } else {
-                console.log(message.status)
-
                    mail.erreurMessage(message.errors);
                    mail.cleanForm();
                }
