@@ -30,7 +30,7 @@ class MailerController extends AbstractController
             //->replyTo('crossfitdaemon@gmail.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Votre message depuis le site crossfitdaemon.fr')
-            ->htmlTemplate('mail/mailer/mailVisit.html.twig')
+            ->htmlTemplate('mail/mailer/mailExploit.html.twig')
             ->context([
                 'name' => $mail->getName(),
                 'address' => $mail->getEmail(),
@@ -39,7 +39,7 @@ class MailerController extends AbstractController
         $this->mailer->send($email);
         
     }
-
+   
 
     #[Route('/email/exploitant')]
     public function sendEmailExploitant(Messages $mail)
@@ -53,7 +53,7 @@ class MailerController extends AbstractController
             //->replyTo('crossfitdaemon@gmail.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Nouveau message depuis votre site')
-            ->htmlTemplate('mail/mailer/mailExploit.html.twig')
+            ->htmlTemplate('mail/mailer/mailVisit.html.twig')
             ->context([
                 'name' => $mail->getName(),
                 'address' => $mail->getEmail(),
