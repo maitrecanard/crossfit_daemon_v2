@@ -1,7 +1,7 @@
 const app = {
 
     // apiUrl: "https://testapi.mathieusiaudeau.fr/api/",
-    apiUrl: "http://localhost:8081/api/",
+    apiUrl: "https://test2023.crossfitdaemon.fr/api/",
 
     httpHeaders: new Headers(),
 
