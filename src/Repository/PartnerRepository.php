@@ -18,10 +18,10 @@ class PartnerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Partners::class);
+        parent::__construct($registry, Partner::class);
     }
 
-    public function save(Partners $entity, bool $flush = false): void
+    public function save(Partner $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class PartnerRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Partners $entity, bool $flush = false): void
+    public function remove(Partner $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

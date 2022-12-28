@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Page;
+use App\Entity\Pages;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Pages[]    findAll()
  * @method Pages[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PageRepository extends ServiceEntityRepository
+class PagesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -20,13 +20,12 @@ class Partner
     private ?string $url = null;
 
     #[ORM\Column(length: 150)]
-    private ?string $image = null;
+    private ?string $img = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+
 
     #[ORM\Column(nullable: true)]
-    private ?int $active = null;
+    private ?int $activ = null;
 
     public function getId(): ?int
     {
@@ -57,38 +56,28 @@ class Partner
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImg(): ?string
     {
-        return $this->image;
+        return $this->img;
     }
 
-    public function setImage(string $image): self
+    public function setImg(string $img): self
     {
-        $this->image = $image;
+        $this->img = $img;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    
+
+    public function getActiv(): ?int
     {
-        return $this->created_at;
+        return $this->activ;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setActive(?int $activ): self
     {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getActive(): ?int
-    {
-        return $this->active;
-    }
-
-    public function setActive(?int $active): self
-    {
-        $this->active = $active;
+        $this->activ = $activ;
 
         return $this;
     }
