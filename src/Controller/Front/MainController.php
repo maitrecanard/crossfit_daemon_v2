@@ -22,12 +22,12 @@ class MainController extends AbstractController
     {
         $visitor->visitorEnter();
 
-        $article1 = $articlesRepository->find(1);
-        $article2 = $articlesRepository->find(2);
-        $article3 = $articlesRepository->find(3);
-        $article4 = $articlesRepository->find(4);
-        $article5 = $articlesRepository->find(5);
-        $article6 = $articlesRepository->find(6);
+        $article1 = $articlesRepository->find(4);
+        $article2 = $articlesRepository->find(5);
+        $article3 = $articlesRepository->find(6);
+        $article4 = $articlesRepository->find(7);
+        $article5 = $articlesRepository->find(8);
+        $article6 = $articlesRepository->find(9);
 
         $cgv = $pagesRepository->find(1);
         $ml = $pagesRepository->find(2);
