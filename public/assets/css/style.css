@@ -687,6 +687,7 @@ input:focus,
 textarea,
 textarea:focus {
   outline: 0;
+  color: black;
 }
 
 /* line 89, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_common.scss */

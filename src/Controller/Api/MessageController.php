@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Controller\Mail\MailerController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class MessageController extends AbstractController
 {
     #[Route('/api/sendmail', name: 'app_front_message')]
-    public function index(Request $request, SerializerInterface $serializer, ManagerRegistry $doctrine, ValidatorInterface $validator, MessagesRepository $messageRepository) : JsonResponse
+    public function index(Request $request, SerializerInterface $serializer, ManagerRegistry $doctrine, ValidatorInterface $validator, MessagesRepository $messageRepository, MailerController $sendMail) : JsonResponse
     {
         
         $json = $request->getContent();
@@ -53,6 +54,9 @@ class MessageController extends AbstractController
 
         $manager->persist($message);
         $manager->flush();
+
+        $sendMail->sendEmailVisitor($message);
+        $sendMail->sendEmailExploitant($message);
         return $this->json(['success' => 'Votre message a été envoyé', 'status'=> Response::HTTP_CREATED ]);
   
         
