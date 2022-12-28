@@ -44,7 +44,7 @@
                     <div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                         <h2>{{ article5.title }}</h2>
                         <a class="fresco"  href="{{ article5.content }}" data-fresco-group="example" data-fresco-caption="CrossFitDaemon">
-                            <img class="img-planning" src="{{ article5.content }}" width="100%">
+                            <img class="img-planning" src="{{ asset('assets/img/planning/' ~ article5.content) }}" alt="{{ article5.title }}" width="100%"/>
                         </a>
                     </div>
                 </div>
