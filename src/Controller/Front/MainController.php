@@ -8,6 +8,7 @@ use App\Repository\ArticlesRepository;
 use App\Repository\MessagesRepository;
 use App\Repository\PagesRepository;
 use App\Repository\PartnerRepository;
+use App\Service\VisitorCounter;
 use PhpParser\Node\Expr\New_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_front_main')]
-    public function index(Request $request, MessagesRepository $messagesRepository, ArticlesRepository $articlesRepository, PartnerRepository $partnerRepository, PagesRepository $pagesRepository): Response
+    public function index(Request $request, MessagesRepository $messagesRepository, ArticlesRepository $articlesRepository, PartnerRepository $partnerRepository, PagesRepository $pagesRepository, VisitorCounter $visitor): Response
     {
+        $visitor->visitorEnter();
+
         $article1 = $articlesRepository->find(1);
         $article2 = $articlesRepository->find(2);
         $article3 = $articlesRepository->find(3);
