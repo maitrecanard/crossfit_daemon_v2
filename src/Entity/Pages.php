@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
-class Page
+class Pages
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,7 +15,7 @@ class Page
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $name = null;
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
@@ -25,14 +25,14 @@ class Page
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }

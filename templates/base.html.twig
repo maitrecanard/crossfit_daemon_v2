@@ -171,18 +171,18 @@
                             
 
                             <div id="cgv" class="cgv" style="display:none;">
-                                <p><?= $page->content ?></p>
+                                <p>{{ cgv|raw }}</p>
                             </div>
                             <div id="mentions" class="cgv" style="display:none;">
-                                <p><?= $page2->content ?></p>
+                                <p>{{ ml|raw }}</p>
                             </div>
                             <div  class="mention"  data-wow-duration="1s" data-wow-delay=".1s">
                             <p>En partenariat avec</p>
-                                <?php  foreach($partners as $partner): ?>
+                               {% for partner in partners %}
                                             
-                                            <h2><?=$partner->name ?></h2>
-                                             <a href="<?=$partner->url?>" target="_blanck"><img src="<?=$partner->img ?>" width="300px"></a>
-                                    <?php   endforeach; ?>
+                                            <h2>{{ partner.name }}</h2>
+                                             <a href="{{ partner.url }}" target="_blanck"><img src="{{ partner.img }}" width="300px"></a>
+                                {% endfor %}
 
                                
                             </div>
