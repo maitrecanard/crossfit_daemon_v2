@@ -23,8 +23,8 @@ class MessageController extends AbstractController
     {
         
         $json = $request->getContent();
-        
         $message = $serializer->deserialize($json, Messages::class, 'json');
+
         $errors = $validator->validate($message);
         if(count($errors) > 0) {
             $cleanErrors = [];
@@ -40,14 +40,22 @@ class MessageController extends AbstractController
 
             return $this->json(['errors'=>$cleanErrors, 'status' => Response::HTTP_UNPROCESSABLE_ENTITY]); 
         }
+        if ($message->getName() == "" || $message->getEmail() == "" || $message->getContent() == "")
+        {
+            return $this->json(['errors'=>'Veuillez renseigner tous les champs', 'status' => Response::HTTP_UNPROCESSABLE_ENTITY]); 
+        }
 
         $manager = $doctrine->getManager();
+    
         $message->setCreatedAt(new \DateTimeImmutable());
         $message->setStatus(1);
+        
+
         $manager->persist($message);
         $manager->flush();
-
         return $this->json(['success' => 'Votre message a été envoyé', 'status'=> Response::HTTP_CREATED ]);
+  
+        
         
     }
 

@@ -23,6 +23,9 @@ class MessageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Messages::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }

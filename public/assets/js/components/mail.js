@@ -1,5 +1,6 @@
 const mail = {
 
+    form : document.querySelector('.form_message'),
     message : document.querySelector('.message'),
 
     uri : "sendmail",
@@ -17,7 +18,6 @@ const mail = {
         const email = document.querySelector('#message_email').value;
         const message = document.querySelector('#message_content').value;
         const token = document.querySelector('#message__token').value;
-        console.log(message);
 
         if (!name || !email || !message || !token ) 
         {
@@ -29,15 +29,6 @@ const mail = {
         
     },
 
-    clearErrorMessage: function() {
-        mail.message.classList.remove('error');
-    },
-
-    
-    clearSuccessMessage: function() {
-        mail.message.classList.remove('success');
-        mail.message.textContent = "";
-    },
 
     sendMail: function(name,email,message,token)
     {
@@ -72,8 +63,8 @@ const mail = {
 
                     mail.cleanForm();
                } else {
+                console.log(message.errors);
                    mail.erreurMessage(message.errors);
-                   mail.cleanForm();
                }
             });
 
@@ -82,16 +73,39 @@ const mail = {
     },
 
     erreurMessage: function(content) {
-        mail.message.textContent = content;
-        mail.message.classList.add('error');
-        setTimeout(mail.clearErrorMessage, 3000);
+        if(content.email)
+        {
+            mail.message.textContent = content.email;
+        } else 
+        {
+            mail.message.textContent = content;
+        }
+       
+        mail.message.classList.add('alert-error');
+        mail.form.classList.add('form_opa');
+        setTimeout(mail.clearErrorMessage, 2000);
     },
 
     successMessage: function(content) {
         mail.message.textContent = content + ' nous vous invitons à vérifier vos spams';
-        mail.message.classList.add('success');
-        setTimeout(mail.clearSuccessMessage, 3000);
+        mail.message.classList.add('alert-success');
+        mail.form.classList.add('form_opa');
+        setTimeout(mail.clearSuccessMessage, 5000);
     },
+
+    clearErrorMessage: function() {
+        mail.message.classList.remove('alert-error');
+        mail.form.classList.remove('form_opa');
+       
+    },
+
+    
+    clearSuccessMessage: function() {
+        mail.message.classList.remove('alert-success');
+        mail.form.classList.remove('form_opa');
+        
+    },
+
 
     cleanForm: function()
     {

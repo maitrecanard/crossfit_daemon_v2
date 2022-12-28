@@ -23,23 +23,17 @@ class Articles
     #[ORM\Column(length: 200)]
     private ?string $slug = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updated_at = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(length: 150, nullable: true)]
-    private ?string $image = null;
+    private ?string $img = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $active = null;
+    private ?int $activ = null;
 
     public function getId(): ?int
     {
@@ -82,29 +76,8 @@ class Articles
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
-    {
-        $this->created_at = $created_at;
 
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updated_at;
-    }
-
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -120,12 +93,12 @@ class Articles
 
     public function getImage(): ?string
     {
-        return $this->image;
+        return $this->img;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?string $img): self
     {
-        $this->image = $image;
+        $this->img = $img;
 
         return $this;
     }
@@ -142,14 +115,14 @@ class Articles
         return $this;
     }
 
-    public function getActive(): ?int
+    public function getActiv(): ?int
     {
-        return $this->active;
+        return $this->activ;
     }
 
-    public function setActive(?int $active): self
+    public function setActive(?int $activ): self
     {
-        $this->active = $active;
+        $this->activ = $activ;
 
         return $this;
     }
