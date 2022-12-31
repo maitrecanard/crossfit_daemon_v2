@@ -1,0 +1,137 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Produit {{ product.name }}{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Produit {{ product.name }}</h1>
+    </div>
+    <div style="display:flex;justify-content:space-between;">
+  <a class="btn btn-secondary btn-icon-split mb-4" href="{{ path('app_back_products_index') }}">
+    <span class="icon text-white-50">
+            <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="text">Retour à la liste</span>
+  </a>
+ 
+   
+    </div>
+        <div class="card shadow mb-4">
+   <div class="card-body">
+    <h3>Information général</h3>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Référence produit</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Ingrédients</th>
+                <td>{{ product.subtitle }}</td>
+            </tr>
+             <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>Histoire</th>
+                <td>{{ product.content }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ product.createdAt ? product.createdAt|date('H:i:s d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de modification</th>
+                <td>{{ product.updatedAt ? product.updatedAt|date('H:i:s d/m/Y') : '' }}</td>
+            </tr>
+           
+            <tr>
+                <th>Image</th>
+                <td><img style="height:300px;border-radius:7px;" src="{{ asset('uploads/products/' ~ product.image) }}"></td>
+            </tr>
+            <tr>
+                <th>Alcool</th>
+                <td>{{ product.degre }}</td>
+            </tr>
+
+             <tr>
+                <th>Publié</th>
+                <td>{{ product.active ? '<span class="text-success">Oui</span>' : '<span class="text-danger">Non</span>' }}</td>
+            </tr>
+                             </tbody>
+                </table>
+        <table class="table" style="width:40%;">
+         <h3>Tarification</h3>
+                    <thead>
+                        <tr>
+                            <th>Quantité</th>
+                            <th>Prix</th>
+                        </tr>
+                    </thead>
+        <tbody>
+            <tr>
+                        <tr>
+                            <td>
+                                <div style="display:flex;flex-direction:column;">
+                                {% for quantity in quantities %}
+                                   <p> {{ quantity.quantity }} cl</p>
+                                {% endfor %}
+                                </div>
+                            </td>
+                            <td>
+                                {% for price in prices %}
+                                    {% dump price %}
+                                    {% if price.prix|length > 0 %}
+                                        <p>  {{ price.prix }} € </p>
+                                    {% else %}
+                                        <p style="height:24px;"></p>
+                                    {% endif %}
+                                  
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                   
+                </td>
+            </tr>
+           
+        </tbody>
+    </table>
+</div>
+</div>
+<h2 class="h3 mb-0 text-gray-800">Historique des mouvements de l'article</h2>
+<div class="card shadow mb-4">
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Action</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                       
+                                    <tbody>
+                                    {% for historic in historical %}
+                                     <tr>
+                                            <td>{{ historic.user.firstname }} {{ historic.user.lastname }}</td>
+                                            <td>{{ historic.name }}</td>
+                                            <td>{{ historic.createdAt ? historic.createdAt|date('H:i:s d/m/Y') : ''}}</td>
+    
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>                                </table>
+                            </div>
+                        </div>
+                    </div>        
+ <a href="{{ path('app_back_products_edit', {'id': product.id}) }}"class="btn btn-warning btn-icon-split mb-3">
+                                        <span class="icon text-white-50">
+                                           <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                        <span class="text">Editer</span>
+                                    </a>
+            {{ include('back/products/_delete_form.html.twig') }}
+{% endblock %}

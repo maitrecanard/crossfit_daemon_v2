@@ -1,0 +1,80 @@
+{{ form_start(form) }}
+    <div class="form-controll mb-3">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div class="form-controll mb-3">
+        {{ form_label(form.subtitle) }}
+        {{ form_widget(form.subtitle) }}
+        {{ form_errors(form.subtitle) }}
+    </div>
+    <div class="form-controll mb-3">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+        {{ form_errors(form.description) }}
+    </div>
+    <div class="form-controll mb-3">
+        {{ form_label(form.categorie) }}
+        {{ form_widget(form.categorie) }}
+        {{ form_errors(form.categorie) }}
+    </div>
+    <div class="form-controll mb-3">
+        {{ form_label(form.degre) }}
+        {{ form_widget(form.degre) }}
+        {{ form_errors(form.degre) }}
+    </div>
+        <div class="form-controll mb-3">
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content) }}
+        {{ form_errors(form.content) }}
+    </div>
+    <div class="form-controll mb-3">
+        {{ form_label(form.picture) }}
+        {{ form_widget(form.picture) }}
+        {{ form_errors(form.picture) }}
+    </div>
+        <div class="form-controll mb-3">
+        {{ form_label(form.active) }}
+        {{ form_widget(form.active) }}
+        {{ form_errors(form.active) }}
+    </div>
+    <h3>Tarification</h3>
+    {% if quantities is defined %}
+    <div style="display:flex; flex-direction:row;">
+        <div style="display:flex;flex-direction:column;">
+            <span style="margin-bottom:1em;">Quantitées</span>
+            {% for quantity in quantities %}
+                    <input style="border:0; height:38px;" name="product[quantity{{ quantity.id }}]" value="{{ quantity.quantity }}" disabled>
+            {% endfor %}
+        </div>
+        <div style="display:flex;flex-direction:column;">
+        <span style="margin-bottom:1em;">Prix</span>
+        {% for price in quantities %}
+           <div style="display:flex;"> <input class="form-control" name="{{ price.id }}" type="text"/> €</div>
+        {% endfor %}
+          </div>
+    </div>
+    {% else %}
+        <div style="display:flex; flex-direction:row;">
+        <div style="display:flex;flex-direction:column;">
+            <span style="margin-bottom:1em;">Quantitées</span>
+            {% for quantity in prices %}
+                    <input style="border:0; height:38px;" name="product[quantity{{ quantity.quantity.id }}]" value="{{ quantity.quantity.quantity }}" disabled>
+            {% endfor %}
+        </div>
+        <div style="display:flex;flex-direction:column;">
+        <span style="margin-bottom:1em;">Prix</span>
+        {% for price in prices %}
+           <div style="display:flex;"> <input class="form-control" name="price_{{ price.id }}" value="{{ price.prix }}" type="text"/> €</div>
+        {% endfor %}
+          </div>
+    </div>
+    {% endif %}
+        <button class="btn btn-success btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+            </span>
+            <span class="text">{{ button_label|default('Enregistrer') }}</span>
+        </button>
+{{ form_end(form) }}

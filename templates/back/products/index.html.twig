@@ -1,0 +1,52 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Products index{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Tous les produits</h1>
+     </div>
+    <a href="{{ path('app_back_products_new') }}" class="btn btn-success btn-icon-split mb-4">
+        <span class="icon text-white-50">
+            <i class="fas fa-check"></i>
+        </span>
+        <span class="text">Nouveau produit</span>
+    </a>
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+        <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead style="position:static; top:0;">
+            <tr>
+                <th>Référence</th>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Publié</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+
+                <td><img style="height:100px;border-radius:7px;" src="{{ asset('uploads/products/' ~ product.image) }}"></td>
+
+                <td>{{ product.active ? '<span class="btn btn-outline-success">Oui</span>' : '<span class="btn btn-outline-danger">Non</span>' }}</td>
+                <td>
+                    <a class="btn btn-outline-info" href="{{ path('app_back_products_show', {'id': product.id}) }}">Aperçu</a>
+                    <a class="btn btn-outline-secondary" href="{{ path('app_back_products_edit', {'id': product.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">Aucun produit actuellement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

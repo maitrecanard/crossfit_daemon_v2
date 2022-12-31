@@ -1,0 +1,36 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+<div class="container text-center" >
+  <div class="row row-cols-3">
+    <div class="card mb-4 py-3 border-left-primary">
+        {% if countVisitor == 0 %}
+          Pas de visiteur ce jour
+        {% else %}
+           <a href="{{ path('app_back_visitor') }}">{{ countVisitor }} visiteurs ce jour</a>
+        {% endif %}
+    </div>
+    <div class="card mb-4 py-3 border-left-success">
+      {% if bestProduct == NULL %}
+        Aucun clic enregistré
+      {% else %}
+        {% for best in bestProduct %}
+        Produit le plus consulté  <img style="width:60px;height:60px;" src="{{ asset('assets/images/' ~ best.image) }}"/> {{ best.name }}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="card mb-4 py-3 border-left-info">
+    {% if products == NULL %}
+        Aucun produit enregistré
+    {% else %}
+      <a href="{{ path('app_back_products_index') }}">{{ activProducts }} produits publié / {{inactivProducts}} produits non publié</a>
+    {% endif %}
+    </div>
+    <div class="col">point de vente</div>
+    <div class="col">Message</div>
+    <div class="col">Mise à jour</div>
+  </div>
+</div>
+{% endblock %}

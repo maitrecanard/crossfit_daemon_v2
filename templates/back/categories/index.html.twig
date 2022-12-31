@@ -1,0 +1,56 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Categories index{% endblock %}
+
+{% block body %}
+       <h1 class="h3 mb-0 text-gray-800">Toute les catégories</h1>
+     </div>
+    <a href="{{ path('app_back_categories_new') }}" class="btn btn-success btn-icon-split mb-4">
+        <span class="icon text-white-50">
+            <i class="fas fa-check"></i>
+        </span>
+        <span class="text">Nouvelle catégorie</span>
+    </a>
+    <div class="card shadow mb-4">
+                   
+        <div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    
+                    <a href="{{ path('app_back_categories_show', {'id': category.id}) }}" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="text">Afficher</span>
+                                    </a>
+                        <a href="{{ path('app_back_categories_edit', {'id': category.id}) }}" class="btn btn-warning btn-icon-split">
+                                        <span class="icon text-white-50">
+                                           <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                        <span class="text">Editer</span>
+                                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune catégorie enregistrée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}
