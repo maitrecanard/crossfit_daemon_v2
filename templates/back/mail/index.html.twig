@@ -1,0 +1,49 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Mail index{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Boite de réception</h1>
+  </div>
+   <div class="card shadow mb-4">
+
+        <div class="card-body">
+        <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        
+        <thead>
+            <tr>
+                <th>Nom et Prénom</th>
+                <th>Adresse email</th>
+                <th>Message du</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mail in mails %}
+            <tr>
+                <td>{{ mail.name }}</td>
+                <td>{{ mail.address }}</td>
+                <td>{{ mail.createdAt ? mail.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    {% if mail.status == 1 %}
+                        <i class="fas fa-envelope"></i> Nouveau
+                    {% elseif mail.status == 2 %}
+                        <i class="fas fa-envelope-open"></i> Lu
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_back_mail_show', {'id': mail.id}) }}">Lire</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas de courrier actuellement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

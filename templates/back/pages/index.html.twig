@@ -1,0 +1,58 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Pages index{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Gestion des pages</h1>
+   </div>
+   {% if is_granted('ROLE_SUPADMIN') %}
+        <a href="{{ path('app_back_pages_new') }}" class="btn btn-success btn-icon-split mb-4">
+            <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+            </span>
+            <span class="text">Nouvelle page</span>
+        </a>
+    {% endif %}
+     <div class="card shadow mb-4">
+                   
+        <div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Référence page</th>
+                <th>Titre</th>
+                <th>Mise à jour le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td>{{ page.title }}</td>
+                <td>{{ page.updatedAt ? page.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_back_pages_show', {'id': page.id}) }}" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="text">Afficher</span>
+                                    </a>
+                    <a href="{{ path('app_back_pages_edit', {'id': page.id}) }}" class="btn btn-warning btn-icon-split">
+                                        <span class="icon text-white-50">
+                                           <i class="fas fa-arrow-right"></i>
+                                        </span>
+                                        <span class="text">Editer</span>
+                                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune page actuellement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

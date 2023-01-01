@@ -1,0 +1,67 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Votre historique de mouvement{% endblock %}
+
+{% block body %}
+<h1 class="h3 mb-0 text-gray-800">Votre historique de mouvement</h1>
+</div>
+  <div class="card shadow mb-4">
+                   
+        <div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Type de mouvement</th>
+                <th>Produit</th>
+                <th>Catégorie</th>
+
+                <th>Point de vente</th>
+                <th>Page</th>
+                <th>Date du mouvement</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for historic in historical %}
+            <tr>
+                
+                <td>{{ historic.user.firstname }} {{ historic.user.lastname }}</td>
+                <td>{{ historic.name }}</td>
+                <td>
+                    {% if historic.product == NULL %}
+                    {% else %}
+                        {{ historic.product.name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if historic.category == NULL %}
+                    {% else %}
+                        {{ historic.category.name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if historic.partner == NULL %}
+                    {% else %}
+                        {{ historic.partner.name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if historic.page == NULL %}
+                    {% else %}
+                        {{ historic.page.title }}
+                    {% endif %}
+                </td>
+                <td>{{ historic.createdAt ? historic.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun historique</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

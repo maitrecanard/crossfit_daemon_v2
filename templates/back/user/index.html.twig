@@ -1,0 +1,67 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Administration - Gestion utilisateurs{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Gestion utilisateurs</h1>
+</div>
+ <a href="{{ path('app_back_user_new') }}"class="btn btn-success btn-icon-split mb-4">
+        <span class="icon text-white-50">
+            <i class="fas fa-check"></i>
+        </span>
+        <span class="text">Nouvelle Utilisateur</span></a>
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+        <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% if user.roles.0 == "ROLE_SUPADMIN" %}
+                        Super Admin
+                    {% elseif user.roles.0 == "ROLE_ADMIN" %}
+                        Administrateur
+                    {% else %}
+                        Utilisateur
+                    {% endif %}
+                </td>
+                <td>
+                {% if app.user.roles.0 == "ROLE_SUPADMIN" %}
+                    {% if (user.roles.0 == "ROLE_SUPADMIN") or (user.roles.0 == "ROLE_ADMIN") or (user.roles.0 == "ROLE_USER") %}
+                        <a class="btn btn-outline-info"  href="{{ path('app_back_user_show', {'id': user.id}) }}">Aperçu</a>
+                        <a class="btn btn-outline-secondary" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Editer</a>
+                    {% endif %}
+                {% else %}
+                    {% if (user.roles.0 == "ROLE_ADMIN") or (user.roles.0 == "ROLE_USER") %}
+                        <a class="btn btn-outline-info"  href="{{ path('app_back_user_show', {'id': user.id}) }}">Aperçu</a>
+                        <a class="btn btn-outline-secondary" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Editer</a>
+                    {% endif %}    
+                {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

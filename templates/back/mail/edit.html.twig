@@ -1,0 +1,13 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Edit Mail{% endblock %}
+
+{% block body %}
+    <h1>Edit Mail</h1>
+
+    {{ include('back/mail/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_back_mail_index') }}">back to list</a>
+
+    {{ include('back/mail/_delete_form.html.twig') }}
+{% endblock %}
