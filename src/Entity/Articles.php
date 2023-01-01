@@ -91,12 +91,12 @@ class Articles
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImg(): ?string
     {
         return $this->img;
     }
 
-    public function setImage(?string $img): self
+    public function setImg(?string $img): self
     {
         $this->img = $img;
 
