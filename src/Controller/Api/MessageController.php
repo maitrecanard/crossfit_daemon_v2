@@ -63,4 +63,15 @@ class MessageController extends AbstractController
         
     }
 
+    #[Route('/api/getnewmail', name: 'mail_get', methods: ["GET"])]
+    public function getNewMail(MailRepository $mailRepository) : JsonResponse
+    {
+        $mails = $mailRepository->findBy(['status'=>1]);
+        $mail = count($mails);
+
+        return $this->json(['mail'=>$mail], Response::HTTP_OK, [], [
+            'groups' => 'mail_get'
+        ]);
+    }
+
 }

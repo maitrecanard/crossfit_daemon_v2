@@ -24,7 +24,7 @@
         {% for mail in mails %}
             <tr>
                 <td>{{ mail.name }}</td>
-                <td>{{ mail.address }}</td>
+                <td>{{ mail.email }}</td>
                 <td>{{ mail.createdAt ? mail.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     {% if mail.status == 1 %}

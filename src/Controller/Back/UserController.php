@@ -29,14 +29,20 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository): Response
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -6,7 +6,7 @@ use App\Repository\PagesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PageRepository::class)]
+#[ORM\Entity(repositoryClass: PagesRepository::class)]
 class Pages
 {
     #[ORM\Id]

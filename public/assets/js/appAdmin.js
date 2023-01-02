@@ -10,8 +10,8 @@ const app = {
     {
         app.httpHeaders.append("Content-Type", "application/json");
 
-        mail.init();
-  
+       
+        mailAdmin.init();
   
     }
 }
