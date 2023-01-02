@@ -3,6 +3,7 @@
 namespace App\Controller\Mail;
 
 use App\Entity\Messages;
+use App\Repository\ExploitantRepository;
 use Symfony\Component\Mime\Email;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
@@ -13,18 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MailerController extends AbstractController
 {
     private $mailer;
+    private $exploit;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(MailerInterface $mailer, ExploitantRepository $exploit)
     {
         $this->mailer = $mailer;
+        $this->exploit = $exploit;
     }
 
     #[Route('/email/visitor')]
     public function sendEmailVisitor(Messages $mail)
     {
+        $exploit = $this->exploit->find(1);
         $email = (new TemplatedEmail())
             ->from('message@crossfitdaemon.fr')
-            ->to('crossfitdaemon@gmail.com')
+            ->to($exploit->getMail())
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('crossfitdaemon@gmail.com')
