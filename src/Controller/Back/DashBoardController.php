@@ -17,15 +17,8 @@ class DashBoardController extends AbstractController
     /**
      * @Route("/admin", name="dashboard")
      */
-    public function index(VisitorCounter $visitor, ExploitantRepository $exploit): Response
+    public function index(VisitorCounter $visitor): Response
     {
-        $exploitVerif = $exploit->find(1);
-
-        if($exploitVerif->getName() === "")
-        {
-            return $this->redirectToRoute('app_back_exploitant_new');
-        }
-
         $countVisitor = $visitor->getCountVisitor();
         
         return $this->render('back/main/index.html.twig', [
