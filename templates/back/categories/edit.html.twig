@@ -1,0 +1,21 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Edition de {{ category.name }}{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Catégorie {{ category.name }}</h1>
+</div>
+<a href="{{ path('app_back_categories_index') }}" class="btn btn-secondary btn-icon-split mb-4">
+    <span class="icon text-white-50">
+        <i class="fas fa-arrow-right"></i>
+    </span>
+    <span class="text">Retour à la liste</span>
+</a>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        {{ include('back/categories/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+</div>
+
+    {{ include('back/categories/_delete_form.html.twig') }}
+{% endblock %}

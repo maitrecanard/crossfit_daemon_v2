@@ -1,0 +1,16 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}HTotal des visites sur le site{% endblock %}
+
+{% block body %}
+
+    <h1 class="h3 mb-0 text-gray-800">Affichage des visites</h1>
+</div>
+ <div class="card mb-4 py-3 border-bottom-primary">
+                                <div class="card-body">
+                                  Depuis le démarrage de la version 2.0 nous avons calculé en totalité <span style="color:#000;">{{ visitorCount }}</span> visiteurs sur votre site / <span style="color:#000;">{{ countDay }}</span> aujourd'hui 
+                                </div>
+                            </div>
+</div>
+</div>
+{% endblock %}

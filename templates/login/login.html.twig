@@ -1,0 +1,24 @@
+{% extends 'front/login_base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <form class="user" method="POST">
+        <div class="form-group">
+            <input type="email" class="form-control form-control-user"
+                id="exampleInputEmail" name="_username" aria-describedby="emailHelp"
+                placeholder="Adresse email">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-user"
+                id="exampleInputPassword" name="_password" placeholder="Password">
+        </div>
+        <div class="form-group">
+        </div>
+        <button type="send" class="btn btn-primary btn-user btn-block">
+            Connexion
+        </button>
+        <hr>
+       
+    </form>
+{% endblock %}

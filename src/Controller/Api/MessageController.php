@@ -46,14 +46,14 @@ class MessageController extends AbstractController
             return $this->json(['errors'=>'Veuillez renseigner tous les champs', 'status' => Response::HTTP_UNPROCESSABLE_ENTITY]); 
         }
 
-        $manager = $doctrine->getManager();
+      //  $manager = $doctrine->getManager();
     
-        $message->setCreatedAt(new \DateTimeImmutable());
-        $message->setStatus(1);
+        //$message->setCreatedAt(new \DateTimeImmutable());
+       // $message->setStatus(1);
         
 
-        $manager->persist($message);
-        $manager->flush();
+        //$manager->persist($message);
+        //$manager->flush();
 
         $sendMail->sendEmailVisitor($message);
         $sendMail->sendEmailExploitant($message);
@@ -61,6 +61,17 @@ class MessageController extends AbstractController
   
         
         
+    }
+
+    #[Route('/api/getnewmail', name: 'mail_get', methods: ["GET"])]
+    public function getNewMail(MailRepository $mailRepository) : JsonResponse
+    {
+        $mails = $mailRepository->findBy(['status'=>1]);
+        $mail = count($mails);
+
+        return $this->json(['mail'=>$mail], Response::HTTP_OK, [], [
+            'groups' => 'mail_get'
+        ]);
     }
 
 }

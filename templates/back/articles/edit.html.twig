@@ -1,0 +1,15 @@
+{% extends 'back/back_base.html.twig' %}
+
+{% block title %}Edit Articles{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-0 text-gray-800">Edition de l'article {{ article.title }}</h1>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-body">
+    {{ include('back/articles/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_back_articles_index') }}">back to list</a>
+
+    {{ include('back/articles/_delete_form.html.twig') }}
+{% endblock %}
