@@ -74,11 +74,12 @@ class MailerController extends AbstractController
         $exploit = $this->exploit->find(1);
         $address = $user->getEmail();
         $role = $user->getRoles(['role']);
+        $url = $_SERVER['SERVER_NAME'];
         $email = (new TemplatedEmail())
             ->from('message@crossfitdaemon.fr')
             ->to($address)
             //->cc('cc@example.com')
-            ->bcc($exploit->getMail())
+            //->bcc($exploit->getMail())
             //->replyTo('crossfitdaemon@gmail.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Votre compte sur crossfitdaemon.fr')
