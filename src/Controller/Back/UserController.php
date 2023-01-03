@@ -2,6 +2,7 @@
 
 namespace App\Controller\Back;
 
+use App\Controller\Mail\MailerController;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -29,7 +30,7 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, MailerController $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -43,7 +44,7 @@ class UserController extends AbstractController
                 )
             );
             $userRepository->save($user, true);
-
+            $mailer->sendEmailNewUser($user);
             return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
