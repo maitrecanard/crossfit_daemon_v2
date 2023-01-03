@@ -20,7 +20,6 @@ class DashBoardController extends AbstractController
     public function index(VisitorCounter $visitor): Response
     {
         $countVisitor = $visitor->getCountVisitor();
-        
         return $this->render('back/main/index.html.twig', [
             'countVisitor' => $countVisitor,
             

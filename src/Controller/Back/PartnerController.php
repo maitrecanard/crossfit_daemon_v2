@@ -2,10 +2,9 @@
 
 namespace App\Controller\Back;
 
-use App\Entity\HistoricMovement;
+
 use App\Entity\Partner;
 use App\Form\PartnerType;
-use App\Repository\HistoricMovementRepository;
 use App\Repository\PartnerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,23 +23,16 @@ class PartnerController extends AbstractController
     }
 
     #[Route('/new', name: 'app_back_partner_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, PartnerRepository $partnerRepository, HistoricMovementRepository $historicMovementRepository): Response
+    public function new(Request $request, PartnerRepository $partnerRepository): Response
     {
         $partner = new Partner();
         $form = $this->createForm(PartnerType::class, $partner);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $partner->setCreatedAt(new \DateTimeImmutable());
             $partnerRepository->add($partner, true);
 
             $user = $this->getUser();
-            $historicMovement = New HistoricMovement();
-            $historicMovement->setUser($user);
-            $historicMovement->setPartner($partner);
-            $historicMovement->setName('Création');
-            $historicMovement->setCreatedAt(new \DateTimeImmutable());
-            $historicMovementRepository->add($historicMovement, true);
 
             return $this->redirectToRoute('app_back_partner_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -52,12 +44,10 @@ class PartnerController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_back_partner_show', methods: ['GET'])]
-    public function show(Partner $partner, HistoricMovementRepository $historicMovementRepository): Response
+    public function show(Partner $partner): Response
     {
-        $historic  = $partner->getHistoricMovements()->getValues();
         return $this->render('back/partner/show.html.twig', [
-            'partner' => $partner,
-            'historical' => $historic
+            'partner' => $partner
         ]);
     }
 

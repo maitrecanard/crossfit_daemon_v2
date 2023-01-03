@@ -3,6 +3,7 @@
 namespace App\Controller\Mail;
 
 use App\Entity\Messages;
+use App\Entity\User;
 use App\Repository\ExploitantRepository;
 use Symfony\Component\Mime\Email;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -62,6 +63,33 @@ class MailerController extends AbstractController
                 'name' => $mail->getName(),
                 'address' => $mail->getEmail(),
                 'content' => $mail->getContent()
+            ]);
+        $this->mailer->send($email);
+        
+    }
+
+    #[Route('/email/newuser')]
+    public function sendEmailNewUser(User $user)
+    {
+        $exploit = $this->exploit->find(1);
+        $address = $user->getEmail();
+        $role = $user->getRoles(['role']);
+        $url = $_SERVER['SERVER_NAME'];
+        $email = (new TemplatedEmail())
+            ->from('message@crossfitdaemon.fr')
+            ->to($address)
+            //->cc('cc@example.com')
+            //->bcc($exploit->getMail())
+            //->replyTo('crossfitdaemon@gmail.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Votre compte sur crossfitdaemon.fr')
+            ->htmlTemplate('mail/mailer/mailNewUser.html.twig')
+            ->context([
+                'nameExploit' => $exploit->getName(),
+                'firstname' => $user->getFirstname(),
+                'lastname' => $user->getLastname(),
+                'address' => $address,
+                'role' => $user->getRoles([0])
             ]);
         $this->mailer->send($email);
         

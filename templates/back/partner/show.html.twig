@@ -27,23 +27,8 @@
                 <td>{{ partner.name }}</td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ partner.description }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ partner.adress }}
-                <input style="display:none;" id="partner_adress" value="{{ partner.adress }}"></td>
-            </tr>
-            <tr>
-                <th>carte</th>
-                <td>
-                    <div id="detailsMap" style="height:600px;"></div>
-                </td>
-            </tr>
-            <tr>
-                <th>Téléphone</th>
-                <td>{{ partner.phone }}</td>
+                <th>Logo</th>
+                <td><img src="{{ asset(partner.img) }}"/></td>
             </tr>
             <tr>
                 <th>Site internet</th>
@@ -51,43 +36,14 @@
             </tr>
             <tr>
                 <th>Active</th>
-                <td>{{ partner.active }}</td>
+                <td>{{ partner.activ }}</td>
             </tr>
-            <tr>
-                <th>Créé le</th>
-                <td>{{ partner.createdAt ? partner.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+
         </tbody>
     </table>
 </div>
 </div>
- <h2 class="h3 mb-0 text-gray-800">Historique des mouvements du partenaire</h2>
-<div class="card shadow mb-4">
-
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nom</th>
-                                            <th>Action</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                       
-                                    <tbody>
-                                    {% for historic in historical %}
-                                     <tr>
-                                            <td>{{ historic.user.firstname }} {{ historic.user.lastname }}</td>
-                                            <td>{{ historic.name }}</td>
-                                            <td>{{ historic.createdAt ? historic.createdAt|date('d/m/Y H:i:s') : ''}}</td>
-    
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>                                </table>
-                            </div>
-                        </div>
-                    </div>        
+ 
     <a href="{{ path('app_back_partner_edit', {'id': partner.id}) }}"class="btn btn-warning btn-icon-split mb-3">
                                         <span class="icon text-white-50">
                                            <i class="fas fa-arrow-right"></i>

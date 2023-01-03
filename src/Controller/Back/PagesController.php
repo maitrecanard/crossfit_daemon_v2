@@ -35,12 +35,7 @@ class PagesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($page);
-            $historicMovement = new HistoricMovement();
-            $historicMovement->setName('Création');
-            $historicMovement->setCreatedAt(new \DateTimeImmutable());
-            $historicMovement->setUser($this->getUser());
-            $historicMovement->setPage($page);
-            $entityManager->persist($historicMovement);
+            
             $entityManager->flush();
 
             return $this->redirectToRoute('app_back_pages_index', [], Response::HTTP_SEE_OTHER);
@@ -53,11 +48,10 @@ class PagesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_back_pages_show', methods: ['GET'])]
-    public function show(Pages $page, HistoricMovementRepository $historicMovementRepository): Response
+    public function show(Pages $page): Response
     {
         return $this->render('back/pages/show.html.twig', [
-            'page' => $page,
-            'historical' => $historicMovementRepository->findBy(['page' => $page])
+            'page' => $page
         ]);
     }
 
@@ -68,13 +62,7 @@ class PagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $page->setUpdatedAt(new \DateTimeImmutable());
-            $historicMovement = new HistoricMovement();
-            $historicMovement->setName('Modification');
-            $historicMovement->setUser($this->getUser());
-            $historicMovement->setPage($page);
-            $historicMovement->setCreatedAt(new \DateTimeImmutable());
-            $entityManager->persist($historicMovement);
+           
             $entityManager->flush();
 
             return $this->redirectToRoute('app_back_pages_show', ['id'=>$page->getId()], Response::HTTP_SEE_OTHER);
