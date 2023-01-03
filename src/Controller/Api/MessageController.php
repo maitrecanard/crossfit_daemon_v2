@@ -46,14 +46,14 @@ class MessageController extends AbstractController
             return $this->json(['errors'=>'Veuillez renseigner tous les champs', 'status' => Response::HTTP_UNPROCESSABLE_ENTITY]); 
         }
 
-        $manager = $doctrine->getManager();
+      //  $manager = $doctrine->getManager();
     
-        $message->setCreatedAt(new \DateTimeImmutable());
-        $message->setStatus(1);
+        //$message->setCreatedAt(new \DateTimeImmutable());
+       // $message->setStatus(1);
         
 
-        $manager->persist($message);
-        $manager->flush();
+        //$manager->persist($message);
+        //$manager->flush();
 
         $sendMail->sendEmailVisitor($message);
         $sendMail->sendEmailExploitant($message);

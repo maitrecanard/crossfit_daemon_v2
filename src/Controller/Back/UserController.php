@@ -85,7 +85,7 @@ class UserController extends AbstractController
                 // le mot de passe ne doit pas être changé, donc on remet le précédent
                 $user->setPassword($previousPassword);
             }
-            $userRepository->add($user, true);
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
         }
